@@ -16,9 +16,10 @@ struct FMagicProjectileSparseData : public FProjectileSparseData
 	GENERATED_BODY()
 
 	FMagicProjectileSparseData()
-	: DamageAmount(20.f)
-	{}
-	
+		: DamageAmount(20.f)
+	{
+	}
+
 	UPROPERTY(EditDefaultsOnly, Category = "Damage")
 	float DamageAmount;
 
@@ -27,7 +28,6 @@ struct FMagicProjectileSparseData : public FProjectileSparseData
 
 	UPROPERTY(EditDefaultsOnly, Category = "Damage")
 	TSubclassOf<USActionEffect> BurningActionClass;
-
 };
 
 UCLASS(SparseClassDataTypes = MagicProjectileSparseData)
@@ -36,19 +36,18 @@ class ACTIONROGUELIKE_API ASMagicProjectile : public ASProjectileBase // Re-pare
 	GENERATED_BODY()
 
 protected:
-
 	UFUNCTION()
-	void OnActorOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	void OnActorOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+	                    int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	virtual void PostInitializeComponents() override;
 
 public:
-
 	ASMagicProjectile();
 
 #if WITH_EDITORONLY_DATA
 	//~ These properties are moving out to the FMySparseClassData struct:
-	
+
 private:
 	UPROPERTY()
 	float DamageAmount_DEPRECATED;
@@ -59,8 +58,9 @@ private:
 	UPROPERTY()
 	TSubclassOf<USActionEffect> BurningActionClass_DEPRECATED;
 #endif
-	
+
 #if WITH_EDITOR
+
 public:
 	// ~ This function transfers existing data into FMySparseClassData.
 	virtual void MoveDataToSparseClassDataStruct() const override;

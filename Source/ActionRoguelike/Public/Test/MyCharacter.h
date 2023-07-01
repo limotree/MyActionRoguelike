@@ -26,6 +26,7 @@ protected:
 
 	
 	void MoveForward(float value); // 0~1
+	void MoveRight(float Value);
 
 public:
 	// Called every frame
